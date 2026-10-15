@@ -1,0 +1,9 @@
+# code-server's data for this project: extensions and editor state
+.coder-data/
+
+# the built site, which gets deployed rather than committed: deno task build
+# builds all of it
+website/
+
+# wrangler's local cache from deploys, including the cloudflare account id
+.wrangler/

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
+  "imports": {
+    "preact": "npm:preact@10",
+    "preact-render-to-string": "npm:preact-render-to-string@6"
+  },
+  "tasks": {
+    "buildWebsite": "deno run --allow-write --allow-read ./scripts/buildWebsite.tsx",
+    "startServer": "deno run --allow-net --allow-read --allow-sys jsr:@std/http@1/file-server --port 8000 website",
+    "buildPdf": {
+      "command": "deno run --allow-run=/usr/lib/chromium/chromium-headless-shell --allow-net=127.0.0.1 --allow-write=./website/resume.pdf ./scripts/buildPdf.ts",
+      "dependencies": ["buildWebsite"]
+    },
+    "buildSocialImage": {
+      "command": "deno run --allow-run=/usr/lib/chromium/chromium-headless-shell --allow-net=127.0.0.1 --allow-write=./website/assets ./scripts/buildSocialImage.ts",
+      "dependencies": ["buildWebsite"]
+    },
+    "build": {
+      "dependencies": ["buildPdf", "buildSocialImage"]
+    },
+    "wrangler": "deno run -A npm:wrangler@4.144.0",
+    "deploy": {
+      "command": "deno task wrangler pages deploy website --project-name resume",
+      "dependencies": ["build"]
+    }
+  }
+}

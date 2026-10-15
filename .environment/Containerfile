@@ -1,0 +1,17 @@
+# Shared dev tooling comes from image_develop-base: see
+# .apple-container/image_develop-base/
+FROM image_develop-base
+
+# Deno builds the site (deno task buildWebsite) and serves its preview (deno
+# task startServer). It's a single static binary; copy it straight out of its
+# official multi-arch image: https://docs.deno.com/runtime/
+COPY --from=denoland/deno:bin-2.9.7@sha256:bc5aa4466e21b6d3021226a85ba2e1911f7c386254d97b9d797903ab74edace2 \
+    /deno /usr/local/bin/deno
+
+# Headless Chromium prints the site to resume.pdf (deno task buildPdf). Debian's
+# package is used because Chrome's own headless builds skip linux on arm64.
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends chromium-headless-shell \
+    && rm -rf /var/lib/apt/lists/*
+USER coder
