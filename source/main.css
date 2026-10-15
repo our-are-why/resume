@@ -1,0 +1,309 @@
+@font-face {
+  font-family: "Courier Prime";
+  src: url("fonts/CourierPrime-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  src: url("fonts/CourierPrime-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  src: url("fonts/CourierPrime-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  src: url("fonts/CourierPrime-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+:root {
+  --spacer: 8px;
+  --borderRadius: 4px;
+
+  --textBackgroundGrey: #EEEEEE;
+  --textSoftBlack: #5C5C5C;
+  /* the link color of our.are.why.soy */
+  --linkPurple: #5E4D75;
+}
+
+body {
+  margin: 0;
+  font-family: "Courier Prime", monospace;
+  /* set explicitly: browsers default plain monospace to 13px but a named font
+     to 16px */
+  font-size: 15px;
+  text-wrap: pretty;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: calc(5 / 4);  
+}
+
+/* links as on our.are.why.soy; the padding gives the highlight room around
+   the word, and the negative margin cancels it, so nothing shifts */
+a {
+  position: relative;
+  margin: 0 -0.25em;
+  padding: 0 0.25em;
+  border-radius: var(--borderRadius);
+  color: var(--linkPurple);
+  font-style: italic;
+  text-decoration: none;
+
+  &:visited {
+    color: var(--linkPurple);
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--linkPurple);
+    color: white;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--linkPurple);
+    outline-offset: 2px;
+  }
+
+  /* a tap area at least 44px tall on phones, as touch guidelines recommend */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1em -0.5em;
+  }
+}
+
+.container-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.contentContainer-body {
+  flex-basis: 832px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* visually hidden, but still read by screen readers */
+.mainHeader-body {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.container-documentSection {
+  display: flex;
+  flex-direction: column;
+  padding-inline: calc(var(--spacer) * 3 / 2);
+  padding-block-end: calc(var(--spacer) * 2);
+}
+
+.contentContainer-documentSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-inline-start: calc(var(--spacer) / 4);
+}
+
+.headerContainer-documentSection {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 256px;
+  display: flex;
+  flex-direction: column;
+  padding-block-start: calc(var(--spacer) / 2);
+}
+
+/* visually hidden, but still read by screen readers */
+.accessibilityHeader-documentSection {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.labelContainer-documentSection {
+  display: flex;
+  padding-top: var(--spacer);
+}
+
+.headerLabel-documentSection {
+  margin: 0;
+  padding-left: calc(var(--spacer) * 5 / 8);
+  padding-right: calc(var(--spacer) * 5 / 8);
+  padding-top: calc(var(--spacer) * 3 / 8);
+  padding-bottom: calc(var(--spacer) * 3 / 8);
+  background-color: var(--textBackgroundGrey);
+  border-radius: var(--borderRadius);
+  font-weight: 700;
+
+  @supports (text-box: trim-both cap alphabetic) {
+    text-box: trim-both cap alphabetic;
+    padding-top: var(--spacer);
+    padding-bottom: var(--spacer);
+  }
+}
+
+.bodyContainer-documentSection {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 512px;
+  padding-inline-start: calc(var(--spacer) / 2);
+  padding-inline-end: var(--spacer);
+  padding-block-start: calc(var(--spacer) * 3);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.bodyContent_container-documentSection {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 512px;
+}
+
+.container-sectionContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: calc(var(--spacer) * 3);
+}
+
+.labelContainer-sectionContent {
+  font-weight: 700;
+  margin-bottom: calc(var(--spacer) * 5 / 4);
+}
+
+.labelUnderline-sectionContent {
+  margin-left: var(--spacer);
+  width: 100%;
+  height: 1px;
+  border-radius: 1px;
+  background-color: black;
+}
+
+.textContainer-sectionContent {
+  padding-inline-start: calc(var(--spacer) * 9 / 8);
+}
+
+.columnList_container-sectionContent {
+  padding-inline-start: calc(var(--spacer) * 9 / 8);
+}
+
+.itemContainer-columnList--sectionContent {
+  display: flex;
+  flex-direction: row;
+  &:not(:last-child) {
+    padding-bottom: calc(var(--spacer) * 5 / 4);
+  }
+}
+
+.itemBullet-columnList--sectionContent {}
+
+.item-columnList--sectionContent {
+  padding-left: var(--spacer);
+}
+
+.wrapList_container-sectionContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-inline-start: calc(var(--spacer) * 9 / 8);
+  margin-top: calc(var(--spacer) * -5 / 4);
+}
+
+.itemContainer-wrapList--sectionContent {
+  display: flex;
+  flex-direction: row;
+  padding-top: calc(var(--spacer) * 5 / 4);
+  padding-right: calc(var(--spacer) * 3 / 2);
+}
+
+.item-wrapList--sectionContent {}
+
+.detail-listItem--temporal---sectionContent {
+  font-style: italic;
+}
+
+.dateRange-listItem--temporal---sectionContent {
+  white-space: nowrap;
+  font-style: italic;
+  color: var(--textSoftBlack);
+}
+
+.divider-documentSection {
+  background-color: var(--textBackgroundGrey);
+  height: calc(var(--spacer) / 2);
+  border-radius: calc(var(--spacer) / 4);
+}
+
+.container-navigationFooter {
+  padding: calc(var(--spacer) * 3 / 2);
+  padding-bottom: calc(var(--spacer) * 5);
+}
+
+.divider-navigationFooter {
+  height: 1px;
+  background-color: var(--textBackgroundGrey);
+}
+
+.navigationContainer-navigationFooter {
+  display: flex;
+  flex-direction: row;
+  padding: var(--spacer);
+  padding-left: calc(var(--spacer) / 4);
+  padding-right: calc(var(--spacer) / 4);
+}
+
+.linksContainer-navigationFooter {
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.linkContainer-navigationFooter {
+  display: flex;
+  flex-direction: row;
+  padding: var(--spacer);
+  padding-left: calc(var(--spacer) * 3);
+}
+
+.link-navigationFooter {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.container-pdfLink {
+  padding-left: calc(var(--spacer) * 4);
+  padding-right: calc(var(--spacer) * 2);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
